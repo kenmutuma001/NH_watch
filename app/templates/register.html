@@ -3,21 +3,22 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="w3-container w3-theme-l5">
-    <div class="w3-col m6 w3-display-middle " >
-      {% if form.errors %}
-        <p> Some Information Might be Incorrect </p>
-      {% endif %}
-          <h3 class="text-center">Sign Up</h3>
-          <form  method="post" class="w3-round  w3-padding">
-            {% csrf_token %}
-            {{ form|crispy }}
-             <div class="w3-bar w3-block">
-              <input type="submit" class="w3-button w3-left w3-green" value="Sign Up">
-            <input type="hidden" name="next" value="{{next}}">
-            <a class="w3-button w3-bar-item w3-right w3-green" href="/accounts/login">Login</a>
-            <p class=" w3-bar-item w3-right">Already have an account?</p>
-              </div>
-          </form>
+  <div class="w3-col m6 w3-display-middle ">
+    {% if form.errors %}
+    <p> Some Information Might be Incorrect </p>
+    {% endif %}
+    <h3 class="text-center">Sign Up</h3>
+    <form method="post" class="w3-round  w3-padding">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="w3-bar w3-block">
+        <input type="submit" class="w3-button w3-left w3-green" value="Sign Up">
+        <input type="hidden" name="next" value="{{next}}">
+        <a class="w3-button w3-bar-item w3-right w3-green" href="/accounts/login">Login</a>
+        <p class=" w3-bar-item w3-right">Already have an account?</p>
+      </div>
+    </form>
   </div>
 </div>
+
 {% endblock %}
