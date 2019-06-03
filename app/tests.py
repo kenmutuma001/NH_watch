@@ -10,59 +10,12 @@ class ProfileTestClass(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username='testuser', password='12345')
-        self.profile = UserProfile(
-            id=1, first_name='John', last_name='Doe', user=self.user, bio='test bio')
+        self.profile = Profile(
+            id=1, user=self.user, bio='test bio')
 
     # Testing instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.profile, UserProfile))
-
-
-class PostTestClass(TestCase):
-    # Set up method
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username='testuser', password='12345')
-        self.post = Post(id=1, title='Test',
-                         content='This is a test', user=self.user)
-
-    # Testing instance
-    def test_instance(self):
-        self.assertTrue(isinstance(self.post, Post))
-
-
-class CommentTestClass(TestCase):
-    # Set up method
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username='testuser', password='12345')
-        self.post = Post(id=1, title='Test',
-                         content='This is a test', user=self.user)
-        self.comment = Comment(id=1, post=self.post, user=self.user)
-
-    # Testing instance
-    def test_instance(self):
-        self.assertTrue(isinstance(self.comment, Comment))
-
-
-class LocationTestClass(TestCase):
-    # Setup method
-    def setUp(self):
-        self.location = Location(id=1, name='Test name')
-
-    # Testing instance
-    def test_instance(self):
-        self.assertTrue(isinstance(self.location, Location))
-
-
-class CategoryTestClass(TestCase):
-    # Setup method
-    def setUp(self):
-        self.category = Category(id=1, name='Test name')
-
-    # Testing instance
-    def test_instance(self):
-        self.assertTrue(isinstance(self.category, Category))
+        self.assertTrue(isinstance(self.profile, Profile))
 
 
 class AreaTestClass(TestCase):
@@ -119,13 +72,12 @@ class BusinessTestClass(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username='testuser', password='12345')
-        self.location = Location(id=1, name='Test name')
         self.neighborhood = Neighborhood(
-            id=1, name='Test name', location=self.location, admin=self.user, occupants=1)
+            id=1, name='Test name', admin=self.user, occupants=1)
         self.category = Category(id=1, name='Test name')
         self.business = Business(id=1, name='Test', user=self.user, description='Test description',
                                  neighborhood=self.neighborhood, category=self.category, email='test@test.com')
-        self.location.save()
+
         self.neighborhood.save()
         self.category.save()
         self.business.save()
