@@ -7,68 +7,85 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
-.myLink {display: none}
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", Arial, Helvetica, sans-serif
+  }
+
+  .myLink {
+    display: none
+  }
 </style>
+
 <body class="w3-light-grey">
-
-<!-- Navigation Bar -->
-<div class="w3-bar w3-white w3-border-bottom">
-  <a href="{%url 'home'%}" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-green"><i class="fa fa-home "></i> Home</a>
-  <a href="{%url 'add-biz'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-plus"></i> Add Business</a>
-        <a href="/admin" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-user"></i> Admin</a>
-    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-red"><i class="fa fa-sign-out "></i>Logout</a>
+  <!-- Navigation Bar -->
+  <div class="w3-bar w3-white w3-border-bottom">
+    <a href="{%url 'home'%}" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-green"><i
+        class="fa fa-home "></i> Home</a>
+    <a href="{%url 'add-biz'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i
+        class="fa fa-plus"></i> Add Business</a>
+    <a href="/admin" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-user"></i>
+      Admin</a>
+    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-red"><i
+        class="fa fa-sign-out "></i>Logout</a>
     <form role="search" class="w3-hide-small" action="{%url 'search-biz'%}">
-    <input type="text" name="business" class="w3-bar-item w3-input w3-transparent w3-hover-green w3-right" placeholder="Search businesses ...">
+      <input type="text" name="business" class="w3-bar-item w3-input w3-transparent w3-hover-green w3-right"
+        placeholder="Search businesses ...">
     </form>
-</div>
-<!-- Page content -->
-<div class="w3-content" style="max-width:1100px;">
+  </div>
+  <!-- Page content -->
+  <div class="w3-content" style="max-width:1100px;">
 
-  <div class="w3-row-padding">
-    <h4 class="w3-center">Search Results</h4>
-            {%if result%}
+    <div class="w3-row-padding">
+      <h4 class="w3-center">Search Results</h4>
+      {%if result%}
 
-           {%for business in result%}
-        <div class="w3-half w3-container w3-margin-bottom w3-display-middle">
-            <h4 class="w3-center">Businesses Found ...</h4>
-            <p>Name: {{business.business_name}}</p>
-            <p>Email: {{business.email}}</p>
-            <p>Located in: {{business.area}}</p>
+      {%for business in result%}
+      <div class="w3-half w3-container w3-margin-bottom w3-display-middle">
+        <h4 class="w3-center">Businesses Found ...</h4>
+        <p>Name: {{business.business_name}}</p>
+        <p>Email: {{business.email}}</p>
+        <p>Located in: {{business.area}}</p>
 
+      </div>
+      {%endfor%}
+      {%else%}
+      <div class="w3-display-container" style="margin-top:20%">
+        <div class="w3-display-middle">
+          <p class="w3-center"><i class="fa fa-frown-o" style="font-size:96px"></i></p><br>
+          <p class="w3-center">Nothing found here</p>
         </div>
-            {%endfor%}
-            {%else%}
-        <div class="w3-display-container" style="margin-top:20%">
-            <div class="w3-display-middle">
-        <p class="w3-center"><i class="fa fa-frown-o" style="font-size:96px"></i></p><br>
-                <p class="w3-center">Nothing found here</p>
-            </div>
-        </div>
-        {%endif%}
-        </div>
+      </div>
+      {%endif%}
+    </div>
 
   </div>
 
-<script>
-// Tabs
-function openLink(evt, linkName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("myLink");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(linkName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
+  <script>
+    // Tabs
+    function openLink(evt, linkName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("myLink");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(linkName).style.display = "block";
+      evt.currentTarget.className += " w3-red";
+    }
 
-// Click on the first tablink on load
-document.getElementsByClassName("tablink")[0].click();
-</script>
+    // Click on the first tablink on load
+    document.getElementsByClassName("tablink")[0].click();
+  </script>
 
 </body>
+
 </html>
