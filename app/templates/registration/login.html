@@ -13,6 +13,7 @@
         <h3> <i>Already have an account?</i> </h3>
       </div>
     </div>
+
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn,w3-button w3-green" style="border-radius: 12px;">Log In</button>
