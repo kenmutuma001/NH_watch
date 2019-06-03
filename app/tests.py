@@ -5,7 +5,7 @@ from .models import *
 # Create your tests here.
 
 
-class UserProfileTestClass(TestCase):
+class ProfileTestClass(TestCase):
     # Set up method
     def setUp(self):
         self.user = User.objects.create_user(
@@ -65,7 +65,7 @@ class CategoryTestClass(TestCase):
         self.assertTrue(isinstance(self.category, Category))
 
 
-class NeighborhoodTestClass(TestCase):
+class AreaTestClass(TestCase):
     # Setup method
     def setUp(self):
         self.user = User.objects.create_user(
