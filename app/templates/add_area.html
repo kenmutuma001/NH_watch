@@ -1,0 +1,23 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="w3-container w3-theme-l5">
+    <div class="w3-col m6 w3-display-middle " >
+      {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+      {% endif %}
+          <h3 class="text-center">Add an Area</h3>
+          <form  method="post" class="w3-round  w3-padding">
+            {% csrf_token %}
+            {{ uploadform|crispy }}
+             <div class="w3-bar w3-block">
+            <div class="form-group w3-center">
+            <input type="submit" class=" w3-center w3-margin w3-button w3-green" value="Submit">
+            <input type="hidden" name="next" value="{{next}}">
+            </div>
+            </div>
+          </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,137 @@
+{%load static%}
+{% load bootstrap4 %}
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html>
+<title>Area Code</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.css">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+
+<body class="w3-light-grey">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-sm bg-light fixed-top navbar-light ">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand" href="{%url 'home'%}">
+        <img
+          src="https://assets-global.website-files.com/59d3b5e54e9881000114dd8b/5a56a8c8519e480001b69b86_dark-eye.png"
+          alt="Logo" style="width:50px;">
+      </a>
+
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <div style="">
+            <a href="{%url 'home'%}" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-green"><i
+                class="fa fa-home "></i> Home</a>
+          </div>
+
+          <div style="margin-left: px;">
+            <a href="{%url 'add-biz'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i
+                class="fa fa-plus"></i> Add Business</a>
+
+          </div>
+
+          <div style="margin-left: 120px;">
+            <form class="form-inline" action="{%url 'search-biz'%}">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search Cars">
+              <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Search</button>
+            </form>
+          </div>
+          <div style="margin-left: 100px;">
+            <a href="/admin" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-green"><i
+                class="fa fa-user"></i>
+              Admin</a>
+          </div>
+          <div style="margin-left: 50px;">
+            <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-red"><i
+                class="fa fa-sign-out "></i>Logout</a>
+
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="w3-container">
+    <h3 class="w3-center">{{area.area_name}}</h3>
+    <div class="w3-row-padding">
+      <div class="w3-container w3-half w3-margin-bottom ">
+        <img src="{{area.area_photo.url}}" alt="area_photo" style="width:100%" class="w3-card-4">
+      </div>
+      <div class="w3-container w3-half w3-padding w3-margin-bottom">
+        <h5 class="w3-center">Area Details</h5>
+        <p>Name: {{area.area_name}}</p>
+        <p>Population: {{area.population}}</p>
+        <a href="{%url 'home'%}" class="w3-button w3-red">Leave Area</a>
+        <h5 class="w3-center">Businesses in the Area</h5>
+        <table class="w3-table-all w3-small w3-card">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Area</th>
+          </tr>
+          {% for business in result%}
+          <tr>
+            <td>{{business.business_name}}</td>
+            <td>{{business.email}}</td>
+            <td>{{business.area}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="w3-row-padding ">
+      <h5 class="w3-center">Active Notifications</h5>
+      <table class="w3-table-all w3-small w3-card">
+        <tr>
+          <th>Title</th>
+          <th>Posted by</th>
+          <th>Area</th>
+        </tr>
+        {% for notification in notices%}
+        <tr>
+          <td>{{notification.title}}</td>
+          <td>{{business.posted_by}}</td>
+          <td>{{business.area}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+  <script>
+    // Tabs
+    function openLink(evt, linkName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("myLink");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(linkName).style.display = "block";
+      evt.currentTarget.className += " w3-red";
+    }
+
+    // Click on the first tablink on load
+    document.getElementsByClassName("tablink")[0].click();
+  </script>
+</body>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</html>

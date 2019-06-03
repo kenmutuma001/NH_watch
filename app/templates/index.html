@@ -1,0 +1,137 @@
+{%extends "base.html"%}
+{% load bootstrap4 %}
+{% load bootstrap3 %}
+{%load static%}
+{% block content %}
+
+<body class="cyan-skin">
+  <section class="bg-blue text-white  pt-5 pb-4">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Know your area</h1>
+              <p>Click on the locations to join their neighbourhood community</p>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <img src="http://7wallpapers.net/wp-content/uploads/19_Quebec.jpg" width="60px;" height="px">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-5 featured">
+    <div class="container">
+      <div class="row">
+        {%for area in all_areas%}
+        <div class="col-md-3" style="background-color:">
+
+          <div class="w3-half w3-margin-bottom ">
+            <a href="{%url 'area' area_id=area.id%}"><img title="Join Neighborhood" src="{{area.area_photo.url}}"
+                alt="Nairobi" class="w3-hover-opacity" style="width:250px" height="200px"></a>
+            <div class="w3-container w3-white">
+              <h4><em>{{area.area_name}}</em></h4>
+            </div>
+          </div>
+
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+
+
+
+  </section>
+  <div>
+    <form class="search">
+      <div class="search__wrapper">
+        <input type="text" name="" placeholder="Search for..." class="search__field">
+        <button type="submit" class="fa fa-search search__icon"></button>
+      </div>
+    </form>
+  </div>
+
+
+  <section class="footer py-5 bg-blue text-white border" id="footer">
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12 " style="">
+          <img
+            src="https://assets-global.website-files.com/59d3b5e54e9881000114dd8b/5a56a8c8519e480001b69b86_dark-eye.png"
+            alt="Logo" style="width:50px;">
+          <p class="">Ngong Lane Plaza,on ngong road near doubletree</p>
+          <ul class="list-unstyled">
+            <li>+61 525 240 310</li>
+            <li>neighbourhood_watch@gmail.com</li>
+
+          </ul>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 " style="margin-left: 260px;">
+          <div class="row">
+            <div class="col-md-3">
+              <h6 class="pb-2">NEWSLETTER </h6>
+              <small> Get the most recent updates from our site and be updated your self...GET IN TOUCH</small>
+              <div class="social-icons pt-3">
+                <ul class="list-inline list-unstyled">
+                  <a href="#">
+                    <li class="list-inline-item"><i class="fa fa-facebook-square fa-2x text-primary"></i></li>
+                  </a>
+                  <a href="#">
+                    <li class="list-inline-item"><i class="fa fa-twitter-square fa-2x text-info"></i></li>
+                  </a>
+                  <a href="#">
+                    <li class="list-inline-item"><i class="fa fa-youtube-play fa-2x text-danger"></i></i></li>
+                  </a>
+                  <a href="#">
+                    <li class="list-inline-item"><i class="fa fa-google-plus-square fa-2x text-danger"></i></li>
+                  </a>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="copyright bg-light py-2" id="copyright">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <small>© Copyright 2019 Ken Mutuma. All Rights Reserved</small></br>
+          <small> The neighbourhood watch </small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
+  <script>
+    // Tabs
+    function openLink(evt, linkName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("myLink");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(linkName).style.display = "block";
+      evt.currentTarget.className += " w3-red";
+    }
+
+    // Click on the first tablink on load
+    document.getElementsByClassName("tablink")[0].click();
+  </script>
+</body>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% endblock %}
