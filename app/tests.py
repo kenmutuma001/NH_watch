@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import UserProfile, Post, Comment, Location, Category, Neighborhood, Business
+from .models import *
 # Create your tests here.
 
 
